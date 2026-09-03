@@ -1,0 +1,33 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "kombify",
+  "version": "0.6.2",
+  "description": "Open-source Kombify plugin with governed Knowledge, OpenWiki and Paperwork MCP connectors plus optional local StackKits operations, without shipping credentials.",
+  "author": {
+    "name": "Kombiverse Labs",
+    "url": "https://kombify.io"
+  },
+  "homepage": "https://kombify.io",
+  "repository": "https://github.com/kombifyio/kombify-plugin",
+  "license": "Apache-2.0",
+  "keywords": [
+    "kombify",
+    "mcp",
+    "agent-plugins",
+    "knowledge",
+    "openwiki",
+    "paperwork",
+    "stackkits",
+    "selfhost"
+  ],
+  "extensions": {
+    "io.kombify.workbench": {
+      "permissionRequests": ["network.egress"],
+      "executionTargets": ["local-node"],
+      "presentation": {
+        "displayName": "Kombify",
+        "group": "platform-connector"
+      }
+    }
+  }
+}

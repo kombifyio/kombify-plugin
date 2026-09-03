@@ -1,0 +1,26 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "kombify": {
+      "type": "streamable-http",
+      "url": "https://api.kombify.io/mcp"
+    },
+    "kombify-knowledge": {
+      "type": "streamable-http",
+      "url": "https://api.kombify.io/v1/mcp/knowledge"
+    },
+    "kombify-openwiki": {
+      "type": "streamable-http",
+      "url": "https://api.kombify.io/v1/mcp/openwiki"
+    },
+    "kombify-paperwork": {
+      "type": "streamable-http",
+      "url": "https://paperwork.kombify.io/mcp"
+    },
+    "stackkit": {
+      "type": "stdio",
+      "command": "stackkit-mcp",
+      "args": ["--mode", "docs,local,server"]
+    }
+  }
+}
