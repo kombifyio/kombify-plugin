@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "kombify",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Open-source Kombify plugin with governed Knowledge, OpenWiki and Paperwork MCP connectors plus optional local StackKits operations, without shipping credentials.",
   "author": {
     "name": "Kombiverse Labs",

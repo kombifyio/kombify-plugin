@@ -19,6 +19,30 @@ HTTP knowledge route, which remains limited to public documentation retrieval.
 5. Use only read operations. Changes, publishing, or review belong to the
    product workflow that owns them.
 
+## Search-to-source contract
+
+`search_knowledge` results are directly composable with `get_source`. Pass the
+result's `sourceId` unchanged:
+
+```json
+{
+  "name": "get_source",
+  "arguments": {
+    "sourceId": "<search_knowledge result.sourceId>"
+  }
+}
+```
+
+Do not substitute the result's chunk `id`, `sourceUri`, or an invented
+reference. `ref` is accepted only as a deprecated compatibility alias for
+older clients; new calls use `sourceId`.
+
+Both tools default to the public product corpus. If `search_knowledge` was
+called with `"audience": "internal"`, pass the same audience to `get_source`.
+Internal search and source reads require the developer knowledge tier. Relay a
+structured denial or not-found reason as returned; do not retry with a chunk ID
+or a different identity.
+
 If OAuth is missing, expect an authentication challenge. If entitlement,
 tenant, freshness, or provider policy blocks a result, relay the structured
 reason and its user guidance.

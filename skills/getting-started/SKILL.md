@@ -45,3 +45,6 @@ is an answer: relay its reason and user guidance instead of retrying blindly.
 Knowledge and OpenWiki data must come from their read-only MCP tools, Paperwork
 state from Paperwork tools, and local StackKits state from StackKits tools,
 never from this document or memory.
+
+After `kombify-knowledge` is available, use the `knowledge-usage` skill for the
+canonical search-to-source parameter contract and denial handling.
