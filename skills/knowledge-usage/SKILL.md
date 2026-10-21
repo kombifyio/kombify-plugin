@@ -5,24 +5,19 @@ description: Use when answering questions about Kombify products, concepts, or d
 
 # Use Kombify Knowledge
 
-The Knowledge connector is the authenticated, read-only MCP surface at
-`https://api.kombify.io/v1/mcp/knowledge`. It is separate from the anonymous
-HTTP knowledge route, which remains limited to public documentation retrieval.
+Authenticated, read-only MCP at `https://api.kombify.io/v1/mcp/knowledge`; separate from the anonymous HTTP knowledge route, which only retrieves public documentation.
 
-## Retrieval discipline
+## Discipline
 
-1. Discover the available tools with `tools/list`.
-2. Search before answering a platform question; do not fill gaps from memory.
-3. Pass source identifiers and freshness/index evidence through to the user.
-4. Keep tenant and entitlement boundaries intact. A denied or empty result is
-   not permission to retry with another identity or to infer protected data.
-5. Use only read operations. Changes, publishing, or review belong to the
-   product workflow that owns them.
+1. Discover tools with `tools/list`.
+2. Search before answering a platform question; never fill gaps from memory.
+3. Pass source identifiers and freshness/index evidence on to the user.
+4. Keep tenant and entitlement boundaries: a denied or empty result is no reason to retry with another identity or infer protected data.
+5. Read operations only; changes, publishing and review belong to the owning product workflow.
 
-## Search-to-source contract
+## Search to source
 
-`search_knowledge` results are directly composable with `get_source`. Pass the
-result's `sourceId` unchanged:
+Pass a `search_knowledge` result's `sourceId` unchanged to `get_source`:
 
 ```json
 {
@@ -33,16 +28,6 @@ result's `sourceId` unchanged:
 }
 ```
 
-Do not substitute the result's chunk `id`, `sourceUri`, or an invented
-reference. `ref` is accepted only as a deprecated compatibility alias for
-older clients; new calls use `sourceId`.
+Never substitute the chunk `id`, `sourceUri` or an invented reference; `ref` is only a deprecated alias for older clients.
 
-Both tools default to the public product corpus. If `search_knowledge` was
-called with `"audience": "internal"`, pass the same audience to `get_source`.
-Internal search and source reads require the developer knowledge tier. Relay a
-structured denial or not-found reason as returned; do not retry with a chunk ID
-or a different identity.
-
-If OAuth is missing, expect an authentication challenge. If entitlement,
-tenant, freshness, or provider policy blocks a result, relay the structured
-reason and its user guidance.
+Both tools default to the public product corpus. A `search_knowledge` call with `"audience": "internal"` needs the same audience on `get_source`; internal search and reads need the developer knowledge tier. Relay structured denials and not-found reasons as returned, without retrying by chunk ID or another identity. Missing OAuth yields an authentication challenge; entitlement, tenant, freshness or provider policy blocks come with a structured reason and guidance to relay.

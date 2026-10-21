@@ -5,14 +5,8 @@ description: Use when browsing or evaluating StackKits definitions, kits, and ca
 
 # Browse the StackKits catalog
 
-StackKits owns its CUE catalog and the `stackkit` MCP contract. Ask the local
-connector for the current catalog; do not infer available kits from this skill.
+StackKits owns its CUE catalog and the `stackkit` MCP contract: ask the local connector for the current catalog, never infer kits from this skill. Call `tools/list` and use only returned names. Read-only catalog and docs tools (`docs`/`local`/`server` modes): `stackkit_docs_search`, `stackkit_api_overview`, `stackkit_api_endpoint`, `stackkit_get_openapi_spec`, `stackkit_config_get`, `stackkit_status`, `stackkit_validate_spec`, `stackkit_generate_preview`.
 
-## Rules
-
-- Use read-only catalog tools to list definitions before recommending one.
-- Report the returned version, definition identity, and evidence when present.
-- Do not turn catalog facts into an apply, install, or provider action. Those
-  operations require the StackKits product flow and explicit owner approval.
-- If the local connector is not installed, explain that `stackkit-mcp` or the
-  StackKits-generated client configuration is required.
+- List definitions with these tools before recommending one; report the returned version, definition identity and evidence.
+- Never call write tools (`stackkit_init`, `stackkit_apply`, `stackkit_remove`, `stackkit_upgrade`, `stackkit_backup`, `stackkit_restore`, `stackkit_resolve`, `stackkit_generate`, `stackkit_config_set`); they belong to `$stackkits-operations` after explicit owner approval.
+- Without the local connector, explain that `stackkit-mcp` or the StackKits-generated client configuration is required.

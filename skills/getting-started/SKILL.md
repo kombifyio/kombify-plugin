@@ -1,50 +1,35 @@
 ---
 name: getting-started
-description: Use when setting up the public Kombify plugin, selecting its Knowledge, OpenWiki, Paperwork, or StackKits connector, completing OAuth, or diagnosing a connector that is unavailable or denied.
+description: Use when setting up the public Kombify plugin, selecting a connector, reading a file on an equipped device, completing OAuth, or diagnosing access that is unavailable or denied.
 ---
 
 # Getting started with Kombify
 
-This plugin offers independently selectable connectors:
+Independently selectable connectors:
 
-- `kombify` is the central customer MCP at `https://api.kombify.io/mcp`.
-  It uses the client's OAuth flow and exposes the tools permitted for that
-  signed-in account. Discover the available tools before choosing an action.
-- `kombify-knowledge` is a read-only, cloud-hosted MCP at
-  `https://api.kombify.io/v1/mcp/knowledge`. It uses the client's OAuth flow
-  and Kombify entitlement policy.
-- `kombify-openwiki` is a focused read-only MCP at
-  `https://api.kombify.io/v1/mcp/openwiki`. It exposes only OpenWiki
-  search, source reading, and freshness evidence from the governed SHA-bound
-  knowledge corpus. It does not expose an MCP App or UI state.
-- `kombify-paperwork` is the product-owned Paperwork MCP at
-  `https://paperwork.kombify.io/mcp`. Paperwork owns its tools and tenant
-  boundary; the connector uses the client's OAuth flow and never accepts
-  credentials in tool arguments.
-- `stackkit` is a local MCP process supplied by the StackKits product. It is
-  enabled only after `stackkit-mcp` is installed or the product's generator
-  has written a local configuration.
+| Connector | Endpoint | Notes |
+| --- | --- | --- |
+| `kombify` | `https://api.kombify.io/mcp` | Central customer MCP; client OAuth; exposes the tools permitted for the signed-in account |
+| `kombify-knowledge` | `https://api.kombify.io/v1/mcp/knowledge` | Read-only, cloud-hosted; client OAuth and Kombify entitlement policy |
+| `kombify-openwiki` | `https://api.kombify.io/v1/mcp/openwiki` | Read-only OpenWiki search, source reading and freshness evidence from the governed SHA-bound corpus; no MCP App or UI state |
+| `kombify-paperwork` | `https://paperwork.kombify.io/mcp` | Paperwork owns its tools and tenant boundary; client OAuth; never takes credentials in tool arguments |
+| `stackkit` | local process | From the StackKits product; enabled once `stackkit-mcp` is installed or the generator wrote a local configuration |
 
-Installing the plugin does not sign in, start a process, or grant a tool. A
-client may enable each connector independently.
+Installing the plugin signs in, starts and grants nothing; a client enables each connector independently.
 
-## Setup rules
+## Setup
 
 1. Select only the connectors the user intends to use.
-2. Let the client perform OAuth for the cloud connectors; never request or
-   store credentials in a skill or tool argument.
-3. For StackKits, run the product's documented installation/self-check first.
-   The standard local command is `stackkit-mcp --mode docs,local,server`.
-4. If a connector is missing, disable only that connector and report the
-   product installation or authentication step needed to restore it.
+2. Let the client do OAuth for cloud connectors; never request or store credentials in a skill or tool argument.
+3. StackKits: run the product's installation/self-check first; the standard local command is `stackkit-mcp --mode docs,local,server`.
+4. A missing connector is disabled alone; report the installation or authentication step that restores it.
 
 ## Diagnose from the tools
 
-Call `tools/list` before making claims about availability. A structured denial
-is an answer: relay its reason and user guidance instead of retrying blindly.
-Knowledge and OpenWiki data must come from their read-only MCP tools, Paperwork
-state from Paperwork tools, and local StackKits state from StackKits tools,
-never from this document or memory.
+Read [connector discovery and connection custody](references/connector-discovery.md) to pick a connector or explain a missing connection (hosted agents: the bundled skill-file reader with this skill's ID and `./references/connector-discovery.md`).
 
-After `kombify-knowledge` is available, use the `knowledge-usage` skill for the
-canonical search-to-source parameter contract and denial handling.
+Call `tools/list` before claiming availability. A structured denial is an answer: relay its reason and guidance, do not retry blindly. Knowledge and OpenWiki data come from their read-only tools, Paperwork state from Paperwork tools, local StackKits state from StackKits tools, never from this document or memory. Once `kombify-knowledge` is available, `knowledge-usage` holds the search-to-source contract and denial handling.
+
+## Files on an equipped device
+
+When the run offers `device_files_read`, read [the device file-read guide](references/device-file-read.md) (reader path `./references/device-file-read.md`). The tool uses the run's selected device and current Files permission; installation assigns no device and grants no access. If the tool is absent, explain the missing device assignment or permission with the product's guidance. The tool's result is the evidence of the read.
