@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "kombify",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "description": "Give your agents kombify knowledge, the product wiki and your Paperwork, plus skills to help you get started.",
   "author": {
     "name": "Kombiverse Labs",
