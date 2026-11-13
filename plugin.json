@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "kombify",
-  "version": "0.6.5",
-  "description": "Give your agents kombify knowledge, the product wiki and your Paperwork, plus skills to help you get started.",
+  "version": "0.8.0",
+  "description": "Connect your agent to kombify Cloud: manage your homelab servers remotely, reach your Cloud account, Paperwork and agent inbox through the kombify Gateway, and use kombify knowledge and StackKits.",
   "author": {
     "name": "Kombiverse Labs",
     "url": "https://kombify.io"
@@ -12,13 +12,14 @@
   "license": "Apache-2.0",
   "keywords": [
     "kombify",
+    "homelab",
+    "selfhost",
     "mcp",
     "agent-plugins",
+    "server-management",
     "knowledge",
-    "openwiki",
     "paperwork",
-    "stackkits",
-    "selfhost"
+    "stackkits"
   ],
   "extensions": {
     "io.kombify.workbench": {
@@ -28,6 +29,14 @@
         "displayName": "Kombify",
         "group": "platform-connector"
       }
+    },
+    "com.anthropic.claude": {
+      "displayName": "kombify",
+      "icon": "./assets/icon.png",
+      "documentationUrl": "https://docs.kombify.io/apps/ai/mcp",
+      "supportUrl": "https://kombify.io/en/support",
+      "privacyPolicyUrl": "https://kombify.io/privacy",
+      "termsOfServiceUrl": "https://kombify.io/terms"
     }
   }
 }

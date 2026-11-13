@@ -4,10 +4,12 @@ Start from the intended result and inspect the selected connector's current `too
 
 | Intended result | Connection | Evidence |
 | --- | --- | --- |
-| Understand Kombify, find product docs | Knowledge or OpenWiki | Search, read the returned source, report provenance |
-| Work with the user's documents or mail | Paperwork | Discovered tools and tenant-bound results |
-| Inspect the current local StackKit | StackKits | The installed product's self-check and discovered local tools |
-| Operate a connected Kombify resource | Central customer MCP | The discovered tool and its structured permission guidance |
+| Understand kombify, find product docs | `kombify`, knowledge tools | Search, read the returned source, report provenance |
+| Read, diagnose or change the person's homelab servers | `kombify`, homelab profile | The read tools, then the action card or job read back |
+| Work with the user's documents or mail | `kombify`, Paperwork tools (once equipped) | Discovered tools and tenant-bound results |
+| See who the agent acts as, read its inbox, notify the owner | `kombify`, agent tools | `agent.whoami` and the message results |
+| Inspect the current local StackKit | `stackkit` | The installed product's self-check and discovered local tools |
+| Operate another connected kombify resource | `kombify` | The discovered tool and its structured permission guidance |
 
 ## Missing access
 

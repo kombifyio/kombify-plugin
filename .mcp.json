@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "kombify": {
+      "type": "http",
+      "url": "https://api.kombify.io/mcp"
+    },
+    "stackkit": {
+      "command": "stackkit-mcp",
+      "args": [
+        "--mode",
+        "docs,local,server"
+      ]
+    }
+  }
+}
